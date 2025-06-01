@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revruum - Exprime ta passion pour l'automobile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: #e53e3e;
+            margin-right: 0.5rem;
+            font-size: 2.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #e53e3e;
+        }
+
+        .social-link {
+            color: #e53e3e;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23111" width="1200" height="600"/><path fill="%23e53e3e" opacity="0.1" d="M0 300L50 280C100 260 200 220 300 200C400 180 500 180 600 200C700 220 800 260 900 280C1000 300 1100 300 1150 300L1200 300V600H1150C1100 600 1000 600 900 600C800 600 700 600 600 600C500 600 400 600 300 600C200 600 100 600 50 600H0V300Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .badge {
+            background: #e53e3e;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #e53e3e, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #e53e3e, #ff6b6b);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(229, 62, 62, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #e53e3e;
+            border: 2px solid #e53e3e;
+        }
+
+        .btn-secondary:hover {
+            background: #e53e3e;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(229, 62, 62, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(229, 62, 62, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #e53e3e;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .feature-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 5rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(229, 62, 62, 0.2);
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(229, 62, 62, 0.3);
+        }
+
+        .product-image {
+            height: 280px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #f5f5f5;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .product-pricing {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .price-sale {
+            color: #e53e3e;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .product-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-btn:hover {
+            background: #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .about-text h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(229, 62, 62, 0.2);
+            color: #e53e3e;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .canvas-image {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-item {
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 107, 107, 0.1));
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(229, 62, 62, 0.3);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: #e53e3e;
+            margin-bottom: 1rem;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .service-description {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(229, 62, 62, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: #e53e3e;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            color: #ccc;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            padding: 3rem 0 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(229, 62, 62, 0.3);
+        }
+
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-text {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+            }
+            to {
+                text-shadow: 0 0 30px rgba(229, 62, 62, 0.8);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <i class="fas fa-car"></i>
+                Revruum
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Accueil</a></li>
+                    <li><a href="#products">Produits</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="https://instagram.com/revruum" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">Made in Morocco 🇲🇦</span>
+            <h1>Revruum</h1>
+            <p class="hero-subtitle">Exprime ta passion pour l'automobile</p>
+            <p class="hero-description">
+                Une déco stylée pour les vrais passionnés. Découvrez notre collection exclusive de posters, 
+                stickers et objets déco automobile. Transformez votre espace en un véritable temple de la passion automobile.
+            </p>
+            <div class="cta-buttons">
+                <a href="#products" class="btn btn-primary">Découvrir nos produits</a>
+                <a href="#contact" class="btn btn-secondary">Rejoindre la communauté</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title fade-in">Vos Avantages Exclusifs</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="feature-title">Points Fidélité</h3>
+                    <p class="feature-description">
+                        Gagnez des points à chaque achat et bénéficiez de réductions exclusives sur vos prochaines commandes.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="feature-title">Offres Exclusives</h3>
+                    <p class="feature-description">
+                        Accédez à des offres spéciales réservées à notre communauté Instagram et participez à nos concours.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="feature-title">Designs Personnalisés</h3>
+                    <p class="feature-description">
+                        Commandez des designs sur mesure adaptés à vos goûts et à votre véhicule préféré.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3 class="feature-title">Concours Créatifs</h3>
+                    <p class="feature-description">
+                        Participez à nos concours de création auto-déco et gagnez des produits exclusifs.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Communauté Passionnée</h3>
+                    <p class="feature-description">
+                        Rejoignez une communauté de vrais passionnés d'automobile et partagez votre passion.
+                    </p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="feature-title">Livraison Rapide</h3>
+                    <p class="feature-description">
+                        Livraison rapide partout au Maroc avec un service client personnalisé et réactif.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title fade-in">Nos Produits Populaires</h2>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/nisandas.jpg-oVUzW1z27Z9iuYmaauC1CBapSBxST8.jpeg" alt="Nissan Datsun 620 Poster" width="320" height="280">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">NISSAN DATSUN 620</h3>
+                        <div class="product-pricing">
+                            <div>
+                                <span class="price-original">120 DH</span>
+                                <span class="price-sale">89,99 DH</span>
+                            </div>
+                            <button class="product-btn">Commander</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/rimac.jpg-JGvhNrxfDQcXtuqvffpR0KM23QX9qH.jpeg" alt="Rimac Nevera Poster" width="320" height="280">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">RIMAC NEVERA</h3>
+                        <div class="product-pricing">
+                            <div>
+                                <span class="price-original">135 DH</span>
+                                <span class="price-sale">99,99 DH</span>
+                            </div>
+                            <button class="product-btn">Commander</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/lambo.jpg-VKZLotM1kl1xy5UBorjiqulUVo0ovd.jpeg" alt="Lamborghini Sian Poster" width="320" height="280">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">LAMBORGHINI SIAN</h3>
+                        <div class="product-pricing">
+                            <div>
+                                <span class="price-original">150 DH</span>
+                                <span class="price-sale">110,00 DH</span>
+                            </div>
+                            <button class="product-btn">Commander</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/chevrolet.jpg-UhNNQEvjSOS4lAS1SbgCyXBpINMw7j.jpeg" alt="Chevrolet Corvette Poster" width="320" height="280">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">CHEVROLET CORVETTE</h3>
+                        <div class="product-pricing">
+                            <div>
+                                <span class="price-original">100 DH</span>
+                                <span class="price-sale">95,00 DH</span>
+                            </div>
+                            <button class="product-btn">Commander</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="service-title">Posters Premium</h3>
+                    <p class="service-description">
+                        Collection exclusive de posters haute qualité représentant les plus belles voitures du monde.
+                    </p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="service-title">Stickers Personnalisés</h3>
+                    <p class="service-description">
+                        Stickers sur mesure pour personnaliser votre véhicule ou votre espace de travail.
+                    </p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="service-title">Objets Déco</h3>
+                    <p class="service-description">
+                        Large gamme d'objets décoratifs pour transformer votre garage ou bureau en temple automobile.
+                    </p>
+                </div>
+                <div class="service-item fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="service-title">Design Sur Mesure</h3>
+                    <p class="service-description">
+                        Service de création graphique personnalisé selon vos goûts et préférences automobiles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title fade-in">Notre Mission</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h3>Passion Automobile Marocaine</h3>
+                    <p>
+                        Chez Revruum, nous permettons aux passionnés de voitures d'exprimer leur identité à travers leur espace. 
+                        Que ce soit dans votre chambre, garage, ou bureau, nos produits de décoration uniques transforment votre 
+                        environnement en un véritable temple automobile.
+                    </p>
+                    <p>
+                        Nous mélangeons art, design moderne et culture automobile marocaine pour créer des pièces qui racontent 
+                        votre histoire et votre passion. Chaque produit est conçu avec soin pour refléter l'excellence et 
+                        l'authenticité du "Made in Morocco".
+                    </p>
+                    <p>
+                        Notre communauté grandit chaque jour avec des passionnés qui partagent la même vision : 
+                        faire de l'automobile un art de vivre.
+                    </p>
+                    <div class="tags">
+                        <span class="tag">Posters</span>
+                        <span class="tag">Stickers</span>
+                        <span class="tag">Objets déco</span>
+                        <span class="tag">Designs personnalisés</span>
+                        <span class="tag">Made in Morocco</span>
+                    </div>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Business%20Model%20Whiteboard%20%281%29-5CT77s8vipIe1N3yCcUBg72X7brWEQ.png" alt="Business Model Canvas Revruum" class="canvas-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Contactez-nous</h2>
+            <p style="text-align: center; color: #ccc; margin-bottom: 2rem;">
+                Rejoignez notre communauté et restez connecté avec l'univers Revruum
+            </p>
+            <div class="contact-grid">
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Instagram</h4>
+                        <p>@revruum</p>
+                        <p>Suivez-nous pour les dernières nouveautés</p>
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Téléphone</h4>
+                        <p>+212 610 268 883</p>
+                        <p>Service client disponible</p>
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Email</h4>
+                        <p>revruumcontact@gmail.com</p>
+                        <p>Réponse sous 24h</p>
+                    </div>
+                </div>
+                <div class="contact-item fade-in">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h4>Site Web</h4>
+                        <p>www.revruum.ma</p>
+                        <p>Explorez notre univers</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://instagram.com/revruum" class="btn btn-primary">
+                    <i class="fab fa-instagram"></i> Suivez-nous sur Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-car" style="color: #e53e3e; margin-right: 0.5rem;"></i>
+                    Revruum
+                </div>
+                <p class="footer-text">
+                    © 2024 Revruum. Tous droits réservés. Made in Morocco avec ❤️
+                </p>
+                <p class="footer-text">
+                    Exprimez votre passion automobile avec style
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+
+        // Product card interactions
+        document.querySelectorAll('.product-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const productName = this.closest('.product-card').querySelector('.product-name').textContent;
+                alert(`Merci pour votre intérêt pour ${productName}! Contactez-nous pour finaliser votre commande.`);
+            });
+        });
+    </script>
+</body>
+</html>
